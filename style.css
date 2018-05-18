@@ -13,7 +13,7 @@ html {
         width: 60% !important;
     }
 }
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 990px) {
     .menu-small {
         display: none !important;
     }
@@ -21,7 +21,7 @@ html {
         display: flex !important;
     }
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 990px) {
     .menu-small {
         display: block !important;
     }
@@ -32,11 +32,28 @@ html {
 div {
     outline: 0px solid black;
 }
+.page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.top {
+    float: left;
+}
+.footer {
+    /*    position:absolute;
+    bottom:0;
+    left:0;*/
+    width: 100%;
+    background-color: #e4e4e4;
+    padding-bottom: 25px;
+}
 .main {
     width: 100%;
     float: left;
 }
-.info-block{
+.info-block {
     border-bottom: 1px solid #bcbcbc;
 }
 .breadcrumbs {
@@ -63,10 +80,10 @@ h1 {
 }
 .tabs {
     float: left;
-    width: 70%;
+    width: 100%;
     border-bottom: 1px solid #cdcdcd;
 }
-.tab {
+.tab-title {
     text-align: center;
     float: left;
     padding: 7px;
@@ -74,11 +91,18 @@ h1 {
     margin-right: 5px;
     width: 145px;
     outline: 1px solid #cdcdcd;
+    cursor: pointer;
 }
-.tab-current {
+.tab-title-current {
     background-color: #999;
     font-weight: bold;
     color: white;
+}
+.tab-info {
+    display: none;
+}
+.tab-info-current {
+    display: block;
 }
 .header {
     width: 100%;
@@ -99,7 +123,7 @@ h1 {
     align-items: center;
 }
 .logo {
-    padding: 10px 0 10px 0;
+    padding: 10px 10px 10px 0;
 }
 .logo > img {
     height: 45px;
@@ -117,12 +141,14 @@ h1 {
 .dropdown {
     visibility: hidden;
     position: absolute;
+    z-index: 999;
 }
 .menu {
     padding-left: 35px;
 }
 .menu-small {
     display: none;
+    padding-left: 0;
 }
 .menu-large {
     float: left;
@@ -159,7 +185,7 @@ h1 {
     top: 44px;
     left: -40%;
     width: 0;
-    height:0;
+    height: 0;
     margin-left: -20px;
     margin-top: -10px;
 }
@@ -174,7 +200,7 @@ h1 {
 }
 .menu-item > a,
 .menu-small-item > a,
-.menu  a {
+.menu a {
     text-decoration: none;
     color: black;
 }
@@ -197,7 +223,7 @@ h1 {
 }
 .user-item {
     float: left;
-    padding: 0 0 0 25px;
+    padding: 0 0 0 0px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -207,86 +233,328 @@ h1 {
 .user-item >img {
     margin: 5px;
 }
-.footer{
-    position:absolute;
-    bottom:0;
-    width:100%;
-    background-color: #e4e4e4;
-    padding-bottom: 25px;
-}
-th{
+th {
     background-color: #999;
     font-weight: normal;
     color: white;
-}
-td{
-}
-th,td{
-    text-align: center;
-    border:1px solid white;
-    padding:15px;
-}
-table tbody tr:nth-child(even){ /* Задаем стили для четных рядов таблицы */
-	background: #f2f2f2;
-}
-table{
-    border-spacing:0;
-    width:100%;
-    font-size: 0.85em;
-}
-.table{
-    float: left;
-    width:100%;
-    padding:25px 0 25px 0;
-}
-.green,.green>a{
-    color:green;
-}
-.red{
-    color:red;
-    font-weight: normal;
-}
-.amt{
     font-weight: bold;
 }
-.date{
+td {} th,
+td {
+    text-align: center;
+    border: 1px solid white;
+    padding: 15px;
+}
+.info-table tbody tr:nth-child(even) {
+    /* Задаем стили для четных рядов таблицы */
+    background: #f2f2f2;
+}
+table {
+    border-spacing: 0;
+    width: 100%;
+    font-size: 0.85em;
+}
+.table {
+    float: left;
+    width: 100%;
+    padding: 25px 0 25px 0;
+    overflow-x: auto;
+}
+.green,
+.green>a {
+    color: green;
+}
+.red {
+    color: red;
+    font-weight: normal;
+}
+.amt {
+    font-weight: bold;
+}
+.date {
     font-size: 0.9em;
 }
-.pagination{
-    width:100%;
-    float:left;
-    padding:25px 0 25px 0;
+.pagination {
+    width: 100%;
+    float: left;
+    padding: 25px 0 25px 0;
 }
-.pagination-block{
-    float:right
+.pagination-block {
+    float: right
 }
-.pagination button, .pagination select{
+.pagination button,
+.pagination select {
     border: 1px solid #aeaeae;
     border-radius: 4px;
-    padding:3px 9px 3px 9px;
+    padding: 3px 9px 3px 9px;
     background-color: #f1f1f1;
 }
-.filters{
-    width:100%;
-    float:left;
-    padding:15px 0 15px 0;
+.filters-block {
+    width: 100%;
+    float: left;
+}
+.filters {
+    float: left;
+    padding: 15px 0 15px 0;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: stretch;
+    align-items: stretch;
 }
-.filters input,.filters select, .filters button {
-    margin:3px;
+.filters input,
+.filters select,
+.filters button {
+    margin: 3px;
     border: 1px solid #787878;
     border-radius: 4px;
-    padding:3px 9px 3px 9px;
-    
+    padding: 3px 9px 3px 9px;
 }
-.filters button{
+.filters button {
     background-color: #f1f1f1;
+    height: 34px;
 }
-.success{
-    border: 0px solid #787878  !important;
+.success {
+    border: 0px solid #787878 !important;
     background-color: #0397ff !important;
     color: #fff;
+}
+/* Фильтры*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
+}
+.select-box {
+    float: left;
+    margin: 3px;
+    position: relative;
+}
+.select {
+    font-size: 0.9em;
+    float: left;
+    border: 1px solid #787878;
+    border-radius: 4px;
+    /*padding: 3px 9px 3px 9px;*/
+    background-color: white;
+    max-width: 200px;
+    display: flex;
+    align-content: center;
+    align-items: stretch;
+    position: relative;
+}
+.values {
+    display: none;
+    border: 1px solid #787878;
+    padding: 5px;
+    border-radius: 0 4px 4px 4px;
+    position: absolute;
+    top: 36px;
+    min-width: 200px;
+    background-color: white;
+}
+.value {
+    color: #6c6c6c;
+}
+.open,
+.close {
+    font-size: 0.8em;
+}
+.open,
+.close,
+.value {
+    line-height: 1.5em;
+}
+.remove {
+    font-size: 1em;
+    line-height: 1.5em;
+}
+.remove,
+.open,
+.close {
+    font-weight: bold;
+    width: 11px;
+}
+.edit .select {
+    border-radius: 4px 4px 0 0;
+    border-bottom: 0px solid #787878;
+}
+.remove,
+.open,
+.close,
+.value {
+    float: left;
+    padding: 6px 6px 6px 8px;
+}
+.remove,
+.close {
+    display: none;
+}
+.edit .values,
+.edit .close,
+.edit .inputDiv {
+    display: block;
+}
+.edit .open {
+    display: none;
+}
+.edit .select {
+    height: 36px;
+}
+.value,
+.close,
+.remove,
+.open {
+    cursor: pointer;
+}
+.changed .remove {
+    display: block;
+}
+.changed .open {
+    display: none;
+}
+.changed .select {
+    background-color: #666;
+}
+.changed .value,
+.changed .remove {
+    color: white;
+}
+.separator {
+    float: left;
+    width: 1px;
+    background-color: white;
+}
+.inputDiv {
+    display: none;
+}
+.inputDiv input {
+    border: 0px;
+    outline: none;
+}
+.edit.input-select .value {
+    font-size: 0.55em;
+    padding: 4
+}
+.date-inputs,
+.number-inputs,
+.switches {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    align-content: space-around;
+    align-items: stretch;
+}
+.date-inputs,
+.date-inputs div,
+.number-inputs,
+.number-inputs div {
+    padding: 5px;
+    float: left;
+}
+.date-table input,
+.number-inputs input {
+    width: 140px;
+    display: inline;
+    border-radius: 4px;
+    border: 1px solid #787878;
+    padding: 3px 9px 3px 9px;
+}
+.date-table a {
+    color: #9e9e9e;
+    text-decoration: none;
+}
+.date-table td {
+    padding: 3px;
+}
+.checkboxes label {
+    display: block;
+    padding: 2px;
+}
+.checkboxes {
+    font-size: 0.9em;
+    max-height: 150px;
+    overflow-y: auto;
+}
+.emptyFilter {
+    height: 46px;
+    width: 1px;
+    float: left;
+}
+.stretch-filters {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+.modal {
+    display: none;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.black {
+    background-color: #000;
+    opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.modal-content {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 30%;
+    margin: auto;
+    max-width: 80%;
+    background-color: #fff;
+    float: left;
+    border-radius: 5px;
+    padding: 5px;
+}
+.modal-head,
+.modal-body {
+    float: left;
+    width: 100%;
+}
+.modal-title {
+    font-size: 1.7em;
+    margin: 5px;
+    width: 100%;
+    text-align: center;
+}
+.modal-close {
+    float: right;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 5px;
+    cursor: pointer;
+}
+.show {
+    display: block;
+}
+.filter-img {
+    width: 15px;
+    height: 20px;
+    margin: 3px;
+}
+button {
+    cursor: pointer;
+}
+th div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
 }
