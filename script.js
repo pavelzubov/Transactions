@@ -37,9 +37,11 @@ document.addEventListener('keyup', (event) => {
 
 function showModal(modal) {
     document.querySelector('.' + modal).classList.add('show');
+    document.body.classList.add('no-scroll');
 }
 
 function hideModal() {
     let modals = Array.from(document.getElementsByClassName('modal'));
-    for (modal of modals) modal.classList.remove('show')
+    for (modal of modals) modal.classList.remove('show');
+    document.body.classList.remove('no-scroll');
 }
