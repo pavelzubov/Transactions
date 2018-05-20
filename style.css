@@ -298,7 +298,7 @@ table {
     padding: 15px 0 15px 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     align-content: stretch;
     align-items: stretch;
@@ -328,6 +328,11 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
     /* <-- Apparently some margin are still there even though it's hidden */
+}
+.select-box:after{
+    content:' ';
+    height:37px;
+    float: left;
 }
 .select-box {
     float: left;
